@@ -11,11 +11,15 @@ import (
 func main() {
 	r := gin.Default()
 	r.LoadHTMLGlob("templates/*")
-	//r.GET("/books/", controllers.FindBooks)
+	r.Static("/static", "./static")
 	models.ConnectDatabase()
 
 	r.GET("/books", controllers.FindBooks)
-	r.POST("/books", controllers.CreateBook)
+	r.GET("/create", controllers.ShowCreateBookForm)
+	r.GET("/delete/", controllers.ShowDeleteBookForm)
+	r.POST("/delete", controllers.DeleteBook)
+
+	r.POST("/create", controllers.CreateBook)
 	r.GET("/books/:id", controllers.FindBook)
 	r.PATCH("/books/:id", controllers.UpdateBook)
 	r.DELETE("/books/:id", controllers.DeleteBook)
