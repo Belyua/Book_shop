@@ -14,11 +14,10 @@ func main() {
 	r.Static("/static", "./static")
 	models.ConnectDatabase()
 
-	r.GET("/books", controllers.FindBooks)
 	r.GET("/create", controllers.ShowCreateBookForm)
 	r.GET("/delete/", controllers.ShowDeleteBookForm)
+	r.GET("/books", controllers.FindBooks)
 	r.POST("/delete", controllers.DeleteBook)
-
 	r.POST("/create", controllers.CreateBook)
 	r.GET("/books/:id", controllers.FindBook)
 	r.PATCH("/books/:id", controllers.UpdateBook)
